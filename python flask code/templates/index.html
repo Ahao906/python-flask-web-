@@ -1,0 +1,15 @@
+<Html>
+
+<head>
+    <title>表单页面</title>
+</head>
+<body>
+    <form action="/b"  method="post">
+        账号：<input type="text" name="username" value="{{name}}"><br>
+        密码：<input type="password" name="password"><br>
+        <input type="submit">
+    </form>
+<!--显示变量  数据绑定-->
+{{name}}  {{password}}  {{age}}  {{position}}
+</body>
+</Html>

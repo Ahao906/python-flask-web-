@@ -1,0 +1,183 @@
+{%  extends 'index.html' %}
+{% block title %}用户管理{% endblock %}
+{% block content %}
+<script src="../static/bootstrap/dist/js/axios.min.js"></script>
+<br>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+    新增用户
+</button>
+
+<!-- 模态框 -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">新增</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- 模态框内容 -->
+            <div class="modal-body">
+                <form >
+                    <div class="mb-3 mt-3 row">
+                        <label for="username" class="form-label col-sm-2" style="padding-top: 10px"><h6>账号：</h6></label>
+                        <div  class="col-sm-9">
+                          <input type="text" class="form-control" id="username" placeholder="输入用户名" name="username">
+                        </div>
+
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="password" class="form-label col-sm-2" style="padding-top: 10px"><h6>密码:</h6></label>
+                        <div  class="col-sm-9">
+                          <input type="text" class="form-control" id="password" placeholder="输入密码" name="password">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" onclick="save();">保存</button>
+                <button type="button" class="btn btn-danger" id="closebtn" data-bs-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 编辑模态框 -->
+<div class="modal" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">编辑</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- 模态框内容 -->
+            <div class="modal-body">
+                <form >
+                    <div class="mb-3 mt-3 row">
+                        <label for="user_id2" class="form-label col-sm-2" style="padding-top: 10px"><h6>id：</h6></label>
+                        <div  class="col-sm-9">
+                          <input readonly type="text" class="form-control" id="user_id2" placeholder="" name="user_id2">
+                        </div>
+
+                    </div>
+                    <div class="mb-3 mt-3 row">
+                        <label for="username2" class="form-label col-sm-2" style="padding-top: 10px"><h6>账号：</h6></label>
+                        <div  class="col-sm-9">
+                          <input type="text" class="form-control" id="username2" placeholder="输入用户名" name="username2">
+                        </div>
+
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="password2" class="form-label col-sm-2" style="padding-top: 10px"><h6>密码:</h6></label>
+                        <div  class="col-sm-9">
+                          <input type="text" class="form-control" id="password2" placeholder="输入密码" name="password2">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" onclick="save2();">更新</button>
+                <button type="button" class="btn btn-danger" id="closebtn2" data-bs-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>编辑</th>
+        <th>删除</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+
+    <tr>
+        <td>{{ user['user_id'] }}</td>
+        <td>{{ user['username'] }}</td>
+        <td>{{ user['password'] }}</td>
+        <td><a class="btn btn-warning btn-sm" data-id="{{user['user_id']}}" data-username="{{user['username']}}" data-password="{{user['password']}}" onclick="edit(this)"  data-bs-toggle="modal" data-bs-target="#myModal2">编辑</a></td>
+        <td><a href="/deleteuser/{{ user['user_id'] }}" class="btn btn-danger btn-sm">删除</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+    function save(){
+       //从表单中取出值
+       let username= document.getElementById('username').value;
+       let password=document.getElementById('password').value;
+       axios.post('/adduser', {'username': username, 'password': password})
+               .then(function (response) {
+                   //监听函数 回调函数
+                   console.log(response.data);
+                   let r=response.data;
+                   if(r.status==='ok') {
+                       //插入数据成功 3秒之后关闭对话框
+                       setTimeout(function () {
+
+                           document.getElementById('closebtn').click();
+                           //刷新页面
+                           window.location.reload()
+                       }, 3000);
+                   }
+               }).catch(function (error) {
+                    console.log(error);
+                  });
+    }
+
+    function edit(obj){
+        console.log(obj);
+        let id=obj.getAttribute('data-id');
+        let username=obj.getAttribute('data-username');
+        let password=obj.getAttribute('data-password');
+        //数据回显到表单
+        document.getElementById('username2').value=username;
+        document.getElementById('password2').value=password;
+        document.getElementById('user_id2').value=id;
+        console.log(id);
+    }
+    function save2(){
+        //从表单中取出值
+       let username2= document.getElementById('username2').value;
+       let password2=document.getElementById('password2').value;
+       let id2=document.getElementById('user_id2').value;
+       axios.post('/edituser', {'username': username2, 'password': password2,'user_id':id2})
+               .then(function (response) {
+                   //监听函数 回调函数
+                   console.log(response.data);
+                   let r=response.data;
+                   if(r.status==='ok') {
+                       //插入数据成功 3秒之后关闭对话框
+                       setTimeout(function () {
+
+                           //document.getElementById('closebtn2').click();
+                           let myModal = bootstrap.Modal.getInstance(document.getElementById('myModal2'));
+                            myModal.hide();
+                           //刷新页面
+                           window.location.reload()
+                       }, 3000);
+                   }
+               }).catch(function (error) {
+                    console.log(error);
+                  });
+    }
+</script>
+{% endblock %}

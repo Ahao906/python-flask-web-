@@ -1,0 +1,142 @@
+<html>
+<head>
+
+<link href="../../static/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">图书详情</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- 左侧图片区域 -->
+        <div class="col-md-5">
+            <!-- 大图 -->
+            <div class="card mb-4">
+                <img id="main-image" src="../../static/upload/{{book['img_url']}}" class="card-img-top img-fluid" alt="图书封面">
+            </div>
+
+            <!-- 四个小图 -->
+            <div class="row">
+                <div class="col-3">
+                    <div class="card mb-2">
+                        <img src="../../static/upload/{{book['img1_url']}}" class="card-img-top img-thumbnail thumbnail-img"
+                             alt="图书封面1" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card mb-2">
+                        <img src="../../static/upload/{{book['img2_url']}}" class="card-img-top img-thumbnail thumbnail-img"
+                             alt="图书封面2" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card mb-2">
+                        <img src="../../static/upload/{{book['img3_url']}}" class="card-img-top img-thumbnail thumbnail-img"
+                             alt="图书封面3" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card mb-2">
+                        <img src="../../static/upload/{{book['img4_url']}}" class="card-img-top img-thumbnail thumbnail-img"
+                             alt="图书封面4" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧图书信息 -->
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Python编程：从入门到实践</h3>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">作者：</div>
+                        <div class="col-md-9">埃里克·马瑟斯 (Eric Matthes)</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">出版社：</div>
+                        <div class="col-md-9">人民邮电出版社</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">价格：</div>
+                        <div class="col-md-9 text-danger fw-bold">¥89.00</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">ISBN：</div>
+                        <div class="col-md-9">9787115499165</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">页数：</div>
+                        <div class="col-md-9">459页</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">出版时间：</div>
+                        <div class="col-md-9">2020-07-01</div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h5 class="mb-3">图书简介</h5>
+                            <p class="text-muted">
+                                《Python编程：从入门到实践》是一本全面的Python入门教程，涵盖了Python基础知识、数据可视化、Web应用程序开发等内容。
+                                本书适合初学者和有一定编程基础的读者，通过丰富的实例和项目，帮助读者快速掌握Python编程技能。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <button class="btn btn-primary me-2">
+                                <i data-feather="shopping-cart"></i> 加入购物车
+                            </button>
+                            <button class="btn btn-outline-secondary">
+                                <i data-feather="heart"></i> 收藏
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .thumbnail-img {
+        cursor: pointer;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    #main-image {
+        height: 400px;
+        object-fit: contain;
+    }
+</style>
+ <script src="../../static/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+    function changeMainImage(src) {
+        document.getElementById('main-image').src = src;
+    }
+
+    // 确保Feather图标在页面加载后初始化
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    });
+</script>
+</body>
+</html>
+

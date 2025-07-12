@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+
+{% block title %}添加书籍{% endblock %}
+{% block content %}
+<form  action="/book/savebook"  method="post" enctype="multipart/form-data">
+    <div class="mb-3 mt-3 row">
+        <label for="book_name" class="form-label col-sm-1" style="padding-top: 10px"><h6>书名：</h6></label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="book_name" placeholder="" name="book_name">
+        </div>
+
+    </div>
+    <div class="mb-3 row">
+        <label for="author_name" class="form-label col-sm-1" style="padding-top: 10px"><h6>作者:</h6></label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="author_name" placeholder="" name="author_name">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="publisher_name" class="form-label col-sm-1" style="padding-top: 10px"><h6>出版社:</h6></label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="publisher_name" placeholder="" name="publisher_name">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="price" class="form-label col-sm-1" style="padding-top: 10px"><h6>价格:</h6></label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="price" placeholder="" name="price">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="page_number" class="form-label col-sm-1" style="padding-top: 10px"><h6>页数:</h6></label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="page_number" placeholder="" name="page_number">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="isbn_number" class="form-label col-sm-1" style="padding-top: 10px"><h6>ISBN:</h6></label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="isbn_number" placeholder="" name="isbn_number">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="isbn_number" class="form-label col-sm-1" style="padding-top: 10px"><h6>大图:</h6></label>
+        <div class="col-sm-7">
+            <input type="file" class="form-control"   placeholder="" name="files">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="isbn_number" class="form-label col-sm-1" style="padding-top: 10px"><h6>图一:</h6></label>
+        <div class="col-sm-7">
+            <input type="file" class="form-control"   placeholder="" name="files">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="isbn_number" class="form-label col-sm-1" style="padding-top: 10px"><h6>图二:</h6></label>
+        <div class="col-sm-7">
+            <input type="file" class="form-control"   placeholder="" name="files">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="isbn_number" class="form-label col-sm-1" style="padding-top: 10px"><h6>图三:</h6></label>
+        <div class="col-sm-7">
+            <input type="file" class="form-control"  placeholder="" name="files">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="isbn_number" class="form-label col-sm-1" style="padding-top: 10px"><h6>图四:</h6></label>
+        <div class="col-sm-7">
+            <input type="file" class="form-control"  placeholder="" name="files">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="publish_date" class="form-label col-sm-1" style="padding-top: 10px"><h6>出版日期:</h6></label>
+        <div class="col-sm-7">
+            <input type="date" class="form-control" id="publish_date" placeholder="" name="publish_date">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="uploader_name" class="form-label col-sm-1" style="padding-top: 10px"><h6>上传人:</h6></label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="uploader_name" placeholder="" name="uploader_name">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary" onclick="save();">保存</button>
+        </div>
+
+    </div>
+</form>
+{% endblock %}
